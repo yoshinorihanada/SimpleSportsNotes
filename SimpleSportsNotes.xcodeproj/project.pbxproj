@@ -7,18 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EB27F3F82CD39BDC00BFAE2E /* SimpleSportsNotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB27F3F72CD39BDC00BFAE2E /* SimpleSportsNotesApp.swift */; };
-		EB27F3FA2CD39BDC00BFAE2E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB27F3F92CD39BDC00BFAE2E /* ContentView.swift */; };
-		EB27F3FC2CD39BE200BFAE2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB27F3FB2CD39BE200BFAE2E /* Assets.xcassets */; };
-		EB27F3FF2CD39BE200BFAE2E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB27F3FE2CD39BE200BFAE2E /* Preview Assets.xcassets */; };
+		EB27F4082CD39EC200BFAE2E /* note.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB27F4072CD39EC200BFAE2E /* note.swift */; };
+		EB27F40A2CD39F0400BFAE2E /* NewNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB27F4092CD39F0400BFAE2E /* NewNoteView.swift */; };
+		EB27F4112CD3A24200BFAE2E /* SportsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB27F4102CD3A24200BFAE2E /* SportsListView.swift */; };
+		EB27F4132CD3A29400BFAE2E /* NoteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB27F4122CD3A29400BFAE2E /* NoteListView.swift */; };
+		EB27F4152CD3A2E000BFAE2E /* NoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB27F4142CD3A2E000BFAE2E /* NoteDetailView.swift */; };
+		EB27F4192CD3A3CB00BFAE2E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB27F4182CD3A3CB00BFAE2E /* ContentView.swift */; };
+		EB42FB5D2CE8830100F4BFE1 /* NoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB42FB5C2CE8830100F4BFE1 /* NoteStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EB27F3F42CD39BDC00BFAE2E /* SimpleSportsNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleSportsNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		EB27F3F72CD39BDC00BFAE2E /* SimpleSportsNotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSportsNotesApp.swift; sourceTree = "<group>"; };
-		EB27F3F92CD39BDC00BFAE2E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		EB27F3FB2CD39BE200BFAE2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		EB27F3FE2CD39BE200BFAE2E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EB27F4072CD39EC200BFAE2E /* note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = note.swift; path = SimpleSportsNotes/Models/note.swift; sourceTree = SOURCE_ROOT; };
+		EB27F4092CD39F0400BFAE2E /* NewNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewNoteView.swift; path = SimpleSportsNotes/Views/NewNoteView.swift; sourceTree = SOURCE_ROOT; };
+		EB27F4102CD3A24200BFAE2E /* SportsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsListView.swift; sourceTree = "<group>"; };
+		EB27F4122CD3A29400BFAE2E /* NoteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListView.swift; sourceTree = "<group>"; };
+		EB27F4142CD3A2E000BFAE2E /* NoteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailView.swift; sourceTree = "<group>"; };
+		EB27F4182CD3A3CB00BFAE2E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EB42FB5C2CE8830100F4BFE1 /* NoteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,20 +57,47 @@
 		EB27F3F62CD39BDC00BFAE2E /* SimpleSportsNotes */ = {
 			isa = PBXGroup;
 			children = (
-				EB27F3F72CD39BDC00BFAE2E /* SimpleSportsNotesApp.swift */,
-				EB27F3F92CD39BDC00BFAE2E /* ContentView.swift */,
-				EB27F3FB2CD39BE200BFAE2E /* Assets.xcassets */,
-				EB27F3FD2CD39BE200BFAE2E /* Preview Content */,
+				EB27F40B2CD3A13700BFAE2E /* Models */,
+				EB27F40C2CD3A14700BFAE2E /* Views */,
+				EB27F40D2CD3A15400BFAE2E /* ViewModels */,
+				EB27F40E2CD3A16300BFAE2E /* Resources */,
 			);
 			path = SimpleSportsNotes;
 			sourceTree = "<group>";
 		};
-		EB27F3FD2CD39BE200BFAE2E /* Preview Content */ = {
+		EB27F40B2CD3A13700BFAE2E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				EB27F3FE2CD39BE200BFAE2E /* Preview Assets.xcassets */,
+				EB42FB5C2CE8830100F4BFE1 /* NoteStore.swift */,
+				EB27F4072CD39EC200BFAE2E /* note.swift */,
 			);
-			path = "Preview Content";
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EB27F40C2CD3A14700BFAE2E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EB27F4092CD39F0400BFAE2E /* NewNoteView.swift */,
+				EB27F4102CD3A24200BFAE2E /* SportsListView.swift */,
+				EB27F4122CD3A29400BFAE2E /* NoteListView.swift */,
+				EB27F4142CD3A2E000BFAE2E /* NoteDetailView.swift */,
+				EB27F4182CD3A3CB00BFAE2E /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EB27F40D2CD3A15400BFAE2E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		EB27F40E2CD3A16300BFAE2E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -99,6 +132,7 @@
 				TargetAttributes = {
 					EB27F3F32CD39BDC00BFAE2E = {
 						CreatedOnToolsVersion = 13.4.1;
+						LastSwiftMigration = 1340;
 					};
 				};
 			};
@@ -125,8 +159,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB27F3FF2CD39BE200BFAE2E /* Preview Assets.xcassets in Resources */,
-				EB27F3FC2CD39BE200BFAE2E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +169,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB27F3FA2CD39BDC00BFAE2E /* ContentView.swift in Sources */,
-				EB27F3F82CD39BDC00BFAE2E /* SimpleSportsNotesApp.swift in Sources */,
+				EB27F4082CD39EC200BFAE2E /* note.swift in Sources */,
+				EB27F4192CD3A3CB00BFAE2E /* ContentView.swift in Sources */,
+				EB27F4152CD3A2E000BFAE2E /* NoteDetailView.swift in Sources */,
+				EB42FB5D2CE8830100F4BFE1 /* NoteStore.swift in Sources */,
+				EB27F4112CD3A24200BFAE2E /* SportsListView.swift in Sources */,
+				EB27F4132CD3A29400BFAE2E /* NoteListView.swift in Sources */,
+				EB27F40A2CD39F0400BFAE2E /* NewNoteView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,7 +232,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -249,7 +286,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -264,9 +301,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SimpleSportsNotes/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = A4TA6NVTFY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -282,6 +321,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yoshinorihanada.SimpleSportsNotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -292,9 +332,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SimpleSportsNotes/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = A4TA6NVTFY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
