@@ -23,57 +23,56 @@ struct SportsListView: View {
     }
 
     var body: some View {
-        NavigationView {
-            VStack { // Explicit spacing to control gaps
-                if uniqueSports.isEmpty {
-                    VStack {
-                        Text("Your sports memories, all in one place.")
-                            .font(.headline)
-                            .foregroundColor(.secondary)
-                            .multilineTextAlignment(.center)
-                            .padding()
-                        Button(action: {
-                            showingNewNote = true
-                        }) {
-                            Text("Create Note")
-                                .font(.headline)
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color.blue)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                        }
-                        .padding(.horizontal)
-                    }
-                } else {
-                    List {
-                        ForEach(uniqueSports, id: \.sportType) { sport in
-                            NavigationLink(destination: NoteListView(sportType: sport.sportType).environmentObject(noteStore)) {
-                                SportRowView(sport: sport)
-                            }
-                        }
-                        .onDelete(perform: deleteSport)
-                    }
-                    .listStyle(InsetGroupedListStyle())
-                }
-            }
-            .navigationTitle("My Sports")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+        VStack {
+            if uniqueSports.isEmpty {
+                VStack {
+                    Text("Your sports memories, all in one place.")
+                        .font(.headline)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                        .padding()
                     Button(action: {
                         showingNewNote = true
                     }) {
-                        Image(systemName: "plus")
-                            .font(.system(size: 16, weight: .semibold))
+                        Text("Create Note")
+                            .font(.headline)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
                     }
+                    .padding(.horizontal)
+                }
+            } else {
+                List {
+                    ForEach(uniqueSports, id: \.sportType) { sport in
+                        NavigationLink(destination: NoteListView(sportType: sport.sportType).environmentObject(noteStore)) {
+                            SportRowView(sport: sport)
+                        }
+                    }
+                    .onDelete(perform: deleteSport)
+                }
+                .listStyle(InsetGroupedListStyle())
+            }
+        }
+        .navigationTitle("My Sports")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    showingNewNote = true
+                }) {
+                    Image(systemName: "plus")
+                        .font(.system(size: 16, weight: .semibold))
                 }
             }
-            .sheet(isPresented: $showingNewNote) {
-                NewNoteView(sportType: nil, isPresented: $showingNewNote)
-            }
+        }
+        .sheet(isPresented: $showingNewNote) {
+            NewNoteView(sportType: nil, isPresented: $showingNewNote)
         }
         .environmentObject(noteStore)
     }
+        
 
     private func deleteSport(at offsets: IndexSet) {
         for index in offsets {
@@ -151,25 +150,31 @@ struct SportRowView: View {
     }
 }
 
-public func iconName(for sport: String) -> String {
+func iconName(for sport: String) -> String {
     let sportLowercased = sport.lowercased()
     switch sportLowercased {
     case "soccer", "football":
-        return "figure.soccer"
+        return "soccerball"
+    case "futsal":
+        return "figure.indoor.soccer"
+    case "seven-a-side football", "7on7 football":
+        return "figure.outdoor.soccer"
+    case "american football":
+        return "american.football"
     case "basketball":
-        return "figure.basketball"
+        return "basketball"
     case "baseball":
-        return "figure.baseball"
+        return "baseball"
     case "tennis":
-        return "figure.tennis"
+        return "tennis.racket"
     case "volleyball":
-        return "figure.volleyball"
-    case "running":
+        return "volleyball"
+    case "running", "marathon", "trail running":
         return "figure.run"
-    case "swimming":
+    case "swimming", "synchronized swimming", "snorkeling", "diving":
         return "figure.pool.swim"
-    case "cycling":
-        return "figure.outdoor.cycle"
+    case "cycling", "biking", "mountain biking":
+        return "bicycle"
     case "boxing":
         return "figure.boxing"
     case "golf":
@@ -178,8 +183,78 @@ public func iconName(for sport: String) -> String {
         return "figure.hiking"
     case "yoga":
         return "figure.mind.and.body"
-    default:
+    case "cricket":
+        return "cricket.ball"
+    case "rugby":
+        return "rugbyball"
+    case "skiing", "waterskiing", "jetskiing":
+        return "skis"
+    case "snowboarding":
+        return "snowboard"
+    case "surfing":
+        return "surfboard"
+    case "skateboarding":
+        return "skateboard"
+    case "table tennis":
+        return "figure.table.tennis"
+    case "badminton":
+        return "figure.badminton"
+    case "fencing":
+        return "figure.fencing"
+    case "archery":
+        return "figure.archery"
+    case "kickboxing", "taekwondo","karate":
+        return "figure.kickboxing" // Use boxing glove icon for kickboxing
+    case "mma", "mixed martial arts":
+        return "figure.martial.arts" // Use a generic martial arts icon
+    case "jiu-jitsu", "brazilian jiu-jitsu":
+        return "figure.martial.arts"
+    case "wrestling", "judo":
+        return "figure.wrestling"
+    case "weightlifting":
+        return "dumbbell"
+    case "rowing","canoeing":
+        return "figure.outdoor.rowing"
+    case "gymnastics":
+        return "figure.gymnastics"
+    case "climbing", "bouldering":
+        return "figure.climbing"
+    case "water polo":
+        return "figure.waterpolo"
+    case "field hockey":
+        return "figure.field.hockey" //fix
+    case "ice hockey":
+        return "figure.ice.hockey"
+    case "figure skating", "ice skating", "speed skating":
+        return "figure.ice.skating"
+    case "curling":
+        return "figure.curling"
+    case "cross-country skiing":
+        return "figure.skiing.crosscountry"
+    case "alpine skiing", "freestyle skiing":
+        return "figure.skiing.downhill"
+    case "bmx","motocross":
+        return "helmet"
+    case "kart racing","rallyracing","car racing":
+        return "car.side"
+    case "boating", "yachting", "sailing":
+        return "sailboat"
+    case "windsurfing", "kitesurfing":
+        return "figure.surfing"
+    case "fishing":
+        return "figure.fishing"
+    case "dance", "hip hop", "folk dance", "tap dance":
+        return "music.note"
+    case "ballet", "hula dance", "breakdance", "salsa":
+        return "figure.dance"
+    case "body weight training":
+        return "figure.strengthtraining.traditional"
+    case "calisthenics":
         return "figure.strengthtraining.functional"
+    case "jumprope", "jump rope":
+        return "figure.jumprope"
+    default:
+        return "figure.run" // Default icon for sports
     }
 }
 

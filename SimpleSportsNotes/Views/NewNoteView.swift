@@ -13,6 +13,7 @@ struct NewNoteView: View {
     var onNoteCreated: (() -> Void)?
     
     @State private var selectedSportType: String
+    @State private var filteredSports: [String] = []
     @State private var date = Date()
     @State private var activities = ""
     @State private var goodPoints = ""
@@ -27,8 +28,56 @@ struct NewNoteView: View {
     @State private var isToDoNextExpanded = false
     @State private var isOthersExpanded = false
     
-    // Sample sports list - you can replace this with your actual sports list
-    private let availableSports = ["Soccer", "Basketball", "Tennis", "Swimming", "Running"]
+    private let allSports = [
+            "Soccer", "Football", "Futsal", "Seven-A-Side Football",
+            "American Football",
+            "Basketball",
+            "Baseball",
+            "Tennis",
+            "Volleyball",
+            "Running", "Marathon", "Trail Running",
+            "Swimming", "Synchronized Swimming", "Snorkeling", "Diving",
+            "Cycling", "Biking", "Mountain Biking",
+            "Boxing",
+            "Golf",
+            "Hiking",
+            "Yoga",
+            "Cricket",
+            "Rugby",
+            "Skiing", "Waterskiing", "Jetskiing",
+            "Snowboarding",
+            "Surfing",
+            "Skateboarding",
+            "Table Tennis",
+            "Badminton",
+            "Fencing",
+            "Archery",
+            "Kickboxing", "Taekwondo", "Karate",
+            "MMA", "Mixed Martial Arts",
+            "Jiu-Jitsu", "Brazilian Jiu-Jitsu",
+            "Wrestling", "Judo",
+            "Weightlifting",
+            "Rowing", "Canoeing",
+            "Gymnastics",
+            "Climbing", "Bouldering",
+            "Water Polo",
+            "Field Hockey",
+            "Ice Hockey",
+            "Figure Skating", "Ice Skating", "Speed Skating",
+            "Curling",
+            "Cross-Country Skiing",
+            "Alpine Skiing", "Freestyle Skiing",
+            "BMX", "Motocross",
+            "Kart Racing", "Rallyracing", "Car Racing",
+            "Boating", "Yachting", "Sailing",
+            "Windsurfing", "Kitesurfing",
+            "Fishing",
+            "Dance", "Hip Hop", "Folk Dance", "Tap Dance",
+            "Ballet", "Hula Dance", "Breakdance", "Salsa",
+            "Body Weight Training",
+            "Calisthenics",
+            "Jumprope", "Jump Rope"
+        ]
     
     @EnvironmentObject var noteStore: NoteStore
     
@@ -67,17 +116,46 @@ struct NewNoteView: View {
                                 
                             } else {
                                 // Coming from SportsListView
-                                TextField("Enter sport type", text: $selectedSportType)
-                                    .font(.body)
-                                    .textFieldStyle(PlainTextFieldStyle())
-                                    .padding(12)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .background(Color(.systemBackground))  // White background
-                                    .cornerRadius(8)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 8)
-                                            .stroke(Color(.systemGray4), lineWidth: 1)  // Gray border
-                                    )
+                                ZStack (alignment: .top) {
+                                    TextField("Enter sport type", text: $selectedSportType)
+                                        .font(.body)
+                                        .textFieldStyle(PlainTextFieldStyle())
+                                        .padding(12)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .background(Color(.systemBackground))  // White background
+                                        .cornerRadius(8)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 8)
+                                                .stroke(Color(.systemGray4), lineWidth: 1)  // Gray border
+                                        )
+                                        .onChange(of: selectedSportType) {
+                                            newValue in updateFilteredSports(with: newValue)
+                                        }
+                                    
+                                
+                                    
+                                    // Suggestions Overlay (Placed outside the TextField and below it)
+                                    if !filteredSports.isEmpty {
+                                        VStack(alignment: .leading, spacing: 0) {
+                                            ForEach(filteredSports, id: \.self) { sport in
+                                                Text(sport)
+                                                    .foregroundColor(.primary) // Adapt to light/dark theme
+                                                    .padding(8)
+                                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                                    .background(Color(UIColor.systemGray5)) // Adaptive background
+                                                    .onTapGesture {
+                                                        selectedSportType = sport
+                                                        filteredSports = [] // Clear suggestions after selection
+                                                    }
+                                            }
+                                        }
+                                        .background(Color(.systemBackground)) // Matches system background
+                                        .cornerRadius(8)
+                                        .padding(.top, 50) // Adjust vertical position to avoid overlap
+                                        .frame(maxWidth: .infinity)
+                                    }
+                                }
+                                .zIndex(1)
                             }
                             
                         }
@@ -202,6 +280,14 @@ struct NewNoteView: View {
         }
     }
     
+    private func updateFilteredSports(with query: String) {
+        if query.isEmpty {
+            filteredSports = []
+        } else {
+            filteredSports = allSports.filter { $0.lowercased().hasPrefix(query.lowercased()) }
+        }
+    }
+    
     private var isFormValid: Bool {
         let sportTypeValid = sportType != nil || !selectedSportType.isEmpty
         return sportTypeValid && !activities.isEmpty
@@ -209,13 +295,13 @@ struct NewNoteView: View {
     
     private func createNote() {
         let newNote = Note(
-            sportType: sportType ?? selectedSportType,
+            sportType: (sportType ?? selectedSportType).trimmingCharacters(in: .whitespacesAndNewlines),
             date: date,
-            activities: activities,
-            goodPoints: goodPoints,
-            badPoints: badPoints,
-            toDoNext: toDoNext,
-            others: others
+            activities: activities.trimmingCharacters(in: .whitespacesAndNewlines),
+            goodPoints: goodPoints.trimmingCharacters(in: .whitespacesAndNewlines),
+            badPoints: badPoints.trimmingCharacters(in: .whitespacesAndNewlines),
+            toDoNext: toDoNext.trimmingCharacters(in: .whitespacesAndNewlines),
+            others: others.trimmingCharacters(in: .whitespacesAndNewlines)
         )
         
         noteStore.addNote(newNote)
